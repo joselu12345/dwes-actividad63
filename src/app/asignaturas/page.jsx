@@ -9,8 +9,8 @@ async function PaginaAsignaturas() {
     return (
         <div>
             <h1>Lista de asignaturas</h1>
-            <Suspense fallback={"Obteniendo Productos ..."}>
-                <Productos />
+            <Suspense fallback={"Obteniendo Asignaturas ..."}>
+                <Asignaturas />
             </Suspense>
 
         </div>
@@ -19,20 +19,20 @@ async function PaginaAsignaturas() {
 
 }
 
-export default PaginAsignaturas;
+export default PaginaAsignaturas;
 
 // ---------------- Componente de servidor
 
-async function Productos() {
+async function Asignaturas() {
 
-    const estudiantes = await prisma.asignatura.findMany()
+    const asignaturas = await prisma.asignatura.findMany()
     //console.log(grupos);
 
     return (
         <div>
             {/*JSON.stringify(grupos)*/}
             {
-                estudiantes.map(asignatura =>
+                asignaturas.map(asignatura =>
                     <div key={asignatura.id}>
                         <div>
                             <p>{asignatura.nombre}</p>

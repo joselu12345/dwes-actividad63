@@ -2,22 +2,22 @@ import { PrismaClient } from "@prisma/client";
 import { Suspense } from "react";
 const prisma = new PrismaClient()
 
-async function PaginaGrupo({ params, searchParams }) {
+async function PaginaEstudiante({ params, searchParams }) {
     const { id } = await params
 
     return (
         <Suspense fallback={"Obteniendo producto ..."}>
-            <Producto id={id} />
+            <Estudiante id={id} />
         </Suspense>
     )
 }
 
-export default PaginaGrupo;
+export default PaginaEstudiante;
 
 // -------------------  Componente de servidor
 
-async function Producto({ id }) {
-    const grupo = await prisma.estudiante.findUnique({
+async function Estudiante({ id }) {
+    const estudiante = await prisma.estudiante.findUnique({
         where: {
             id: +id
         }
@@ -27,8 +27,8 @@ async function Producto({ id }) {
     return (
         <div>
             <p>{estudiante.nombre}</p>
-            <p>{estudiante.fecha_nacimiento}</p>
-            <p>{estudiante.foto}</p>
+            <p>{estudiante.fecha_nacimiento.toISOString().split("T")[0]}</p>
+            <img src={estudiante.foto} className="w-40" />
             <p>{estudiante.tutor_legal}</p>
         </div>
 

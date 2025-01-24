@@ -17,7 +17,7 @@ export default PaginaGrupo;
 // -------------------  Componente de servidor
 
 async function Producto({ id }) {
-    const grupo = await prisma.estudiante.findUnique({
+    const asignatura = await prisma.asignatura.findUnique({
         where: {
             id: +id
         }
@@ -26,10 +26,9 @@ async function Producto({ id }) {
 
     return (
         <div>
-            <p>{estudiante.nombre}</p>
-            <p>{estudiante.fecha_nacimiento}</p>
-            <p>{estudiante.foto}</p>
-            <p>{estudiante.tutor_legal}</p>
+            <p>{asignatura.nombre}</p>
+            <p>{asignatura.profesor}</p>
+            <p>{asignatura.num_horas}</p>
         </div>
 
     );

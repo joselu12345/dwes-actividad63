@@ -9,8 +9,8 @@ async function PaginaEstudiantes() {
     return (
         <div>
             <h1>Lista de estudiantes</h1>
-            <Suspense fallback={"Obteniendo Productos ..."}>
-                <Productos />
+            <Suspense fallback={"Obteniendo Estudiantes ..."}>
+                <Estudiantes />
             </Suspense>
 
         </div>
@@ -19,11 +19,11 @@ async function PaginaEstudiantes() {
 
 }
 
-export default PaginEstudiantes;
+export default PaginaEstudiantes;
 
 // ---------------- Componente de servidor
 
-async function Productos() {
+async function Estudiantes() {
 
     const estudiantes = await prisma.estudiante.findMany()
     //console.log(grupos);
@@ -36,8 +36,8 @@ async function Productos() {
                     <div key={estudiante.id}>
                         <div>
                             <p>{estudiante.nombre}</p>
-                            <p>{estudiante.fecha_nacimiento}</p>
-                            <p>{estudiante.foto}</p>
+                            <p>{estudiante.fecha_nacimiento.toISOString().split("T")[0]}</p>
+                            <img src={estudiante.foto} className="w-40"/>
                             <p>{estudiante.tutor_legal}</p>
                         </div>
                         <hr />
