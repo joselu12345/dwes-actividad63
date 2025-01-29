@@ -16,8 +16,8 @@ async function PaginaGrupos() {
             </Modal>
             */}
 
-            <Suspense fallback={"Obteniendo Productos ..."}>
-                <Productos />
+            <Suspense fallback={"Obteniendo Grupos ..."}>
+                <Grupos />
             </Suspense>
 
         </div>
@@ -30,7 +30,7 @@ export default PaginaGrupos;
 
 // ---------------- Componente de servidor
 
-async function Productos() {
+async function Grupos() {
 
     const grupos = await prisma.grupo.findMany()
     //console.log(grupos);
