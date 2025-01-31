@@ -9,35 +9,40 @@ datasource db {
 }
 
 model Grupo {
-  id     Int    @id @default(autoincrement())
-  nombre String
-  tutor  String
-  aula   String
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  id          Int          @id @default(autoincrement())
+  nombre      String
+  tutor       String
+  aula        String
+  createdAt   DateTime?    @default(now())
+  updatedAt   DateTime?    @updatedAt
+  estudiantes Estudiante[]
 
   @@map("grupos")
 }
 
 model Estudiante {
-  id               Int      @id @default(autoincrement())
+  id               Int          @id @default(autoincrement())
   nombre           String
   fecha_nacimiento DateTime
   foto             String?
-  tutor_legal      String   @default("AMBOS PADRES")
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  tutor_legal      String       @default("AMBOS PADRES")
+  createdAt        DateTime?    @default(now())
+  updatedAt        DateTime?    @updatedAt
+  grupoId          Int
+  grupo            Grupo        @relation(fields: [grupoId], references: [id])
+  asignaturas      Asignatura[]
 
   @@map("estudiantes")
 }
 
 model Asignatura {
-  id        Int    @id @default(autoincrement())
-  nombre    String
-  profesor  String
-  num_horas Int
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  id          Int          @id @default(autoincrement())
+  nombre      String
+  profesor    String
+  num_horas   Int
+  createdAt   DateTime?    @default(now())
+  updatedAt   DateTime?    @updatedAt
+  estudiantes Estudiante[]
 
   @@map("asignaturas")
 }
