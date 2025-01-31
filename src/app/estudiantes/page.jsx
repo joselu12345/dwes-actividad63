@@ -1,11 +1,5 @@
-import Modal from "@/components/Modal";
-import { eliminarEstudiante, insertarEstudiante, modificarEstudiante } from "@/lib/actions";
-import { obtenerEstudiantes } from "@/lib/data";
-import { PrismaClient } from "@prisma/client";
+import Estudiantes from "@/components/Estudiantes/Lista";
 import { Suspense } from "react";
-const prisma = new PrismaClient()
-
-
 
 function PaginaEstudiantes() {
 
